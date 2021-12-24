@@ -8,15 +8,14 @@ A simple logging library implemented in C99
 **[log.c](src/log.c?raw=1)** and **[log.h](src/log.h?raw=1)** should be dropped
 into an existing project and compiled along with it.
 
-```c
 There are two functions in log.c to be completed by the user:
+```c
 void uartSendByte(uint8_t byte);
 uint32_t getTimestamp ();
 ```
-
 uartSendByte requires a driver for your device to put a single byte onto the uart transmit pin (see example for atmega4809)
 getTimestamp is required if timestamps or timeoffsets are desired.  An RTC or 1 second timer can be used.
-```c
+
 The library provides 6 function-like macros for logging:
 
 ```c
@@ -30,65 +29,34 @@ log_fatal(const char *fmt, ...);
 
 
 
-Each function takes a printf format string followed by additional arguments:
+Each function takes a format string similar to printf followed by additional arguments:
+
+I tried to keep things small, so the only formatting available is:
+%d  unsigned 16bit integer
+%l  unsigned 32bit integer
+%i  binary
+%h  hex (wihout 0x prefix)
 
 ```c
-log_trace("Hello %s", "world")
+	log_trace("Register Contents %i", registerContents);
+	log_debug("Value: 0x%h", memoryContents);
+	log_info("i2c read device: %h address: %h contents: %d", slaveAddress, memoryAddress, memoryContents);
+	log_warn("i2c bus is stuck");
+	log_error("Failed with error code (%d)", errorCode);
+	log_fatal("No response");	
 ```
 
-Resulting in a line with the given format printed to stderr:
+#### Set Log Level
+To set the log level, set the definition to desired level
+#define LOG_LEVEL	LOG_TRACE	//no log output below this level
 
-```
-20:18:26 TRACE src/main.c:11: Hello world
-```
+#### Enable Colour
+To enable colour, define LOG_USE_COLR
+#define LOG_USE_COLOR			//comment this line if colour not desired
 
-
-#### log_set_quiet(bool enable)
-Quiet-mode can be enabled by passing `true` to the `log_set_quiet()` function.
-While this mode is enabled the library will not output anything to `stderr`, but
-will continue to write to files and callbacks if any are set.
-
-
-#### log_set_level(int level)
-The current logging level can be set by using the `log_set_level()` function.
-All logs below the given level will not be written to `stderr`. By default the
-level is `LOG_TRACE`, such that nothing is ignored.
-
-
-#### log_add_fp(FILE *fp, int level)
-One or more file pointers where the log will be written can be provided to the
-library by using the `log_add_fp()` function. The data written to the file
-output is of the following format:
-
-```
-2047-03-11 20:18:26 TRACE src/main.c:11: Hello world
-```
-
-Any messages below the given `level` are ignored. If the library failed to add a
-file pointer a value less-than-zero is returned.
-
-
-#### log_add_callback(log_LogFn fn, void *udata, int level)
-One or more callback functions which are called with the log data can be
-provided to the library by using the `log_add_callback()` function. A callback
-function is passed a `log_Event` structure containing the `line` number,
-`filename`, `fmt` string, `va` printf va\_list, `level` and the given `udata`.
-
-
-#### log_set_lock(log_LockFn fn, void *udata)
-If the log will be written to from multiple threads a lock function can be set.
-The function is passed the boolean `true` if the lock should be acquired or
-`false` if the lock should be released and the given `udata` value.
-
-
-#### const char* log_level_string(int level)
-Returns the name of the given log level as a string.
-
-
-#### LOG_USE_COLOR
-If the library is compiled with `-DLOG_USE_COLOR` ANSI color escape codes will
-be used when printing.
-
+#### Enable Timestamps
+To enable timestamps, define LOG_TIME
+#define LOG_TIME				//comment this line if timestamps not desired
 
 ## License
 This library is free software; you can redistribute it and/or modify it under
