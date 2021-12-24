@@ -58,13 +58,13 @@ To set the log level, set the definition to desired level
 #### Enable Colour
 To enable colour, define LOG_USE_COLR
 ```c
-#define LOG_USE_COLOR			//comment this line if colour not desired
+#define LOG_USE_COLOR	 //comment this line if colour not desired
 ```
 
 #### Enable Timestamps
 To enable timestamps, define LOG_TIME
 ```c
-#define LOG_TIME				//comment this line if timestamps not desired
+#define LOG_TIME	//comment this line if timestamps not desired
 ```
 ## License
 This library is free software; you can redistribute it and/or modify it under
