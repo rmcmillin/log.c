@@ -6,8 +6,17 @@ A simple logging library implemented in C99
 
 ## Usage
 **[log.c](src/log.c?raw=1)** and **[log.h](src/log.h?raw=1)** should be dropped
-into an existing project and compiled along with it. The library provides 6
-function-like macros for logging:
+into an existing project and compiled along with it.
+
+```c
+There are two functions in log.c to be completed by the user:
+void uartSendByte(uint8_t byte);
+uint32_t getTimestamp ();
+
+uartSendByte requires a driver for your device to put a single byte onto the uart transmit pin (see example for atmega4809)
+getTimestamp is required if timestamps or timeoffsets are desired.  An RTC or 1 second timer can be used.
+```c
+The library provides 6 function-like macros for logging:
 
 ```c
 log_trace(const char *fmt, ...);
@@ -17,6 +26,8 @@ log_warn(const char *fmt, ...);
 log_error(const char *fmt, ...);
 log_fatal(const char *fmt, ...);
 ```
+
+
 
 Each function takes a printf format string followed by additional arguments:
 
