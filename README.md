@@ -1,8 +1,8 @@
 # log.c
 A simple logging library implemented in C99
 
-![screenshot](https://cloud.githubusercontent.com/assets/3920290/23831970/a2415e96-0723-11e7-9886-f8f5d2de60fe.png)
 
+![logimage](https://user-images.githubusercontent.com/77390891/147371464-0bc2ab05-07a4-4088-baf3-1cd8e032f9ba.png)
 
 ## Usage
 **[log.c](src/log.c?raw=1)** and **[log.h](src/log.h?raw=1)** should be dropped
