@@ -5,7 +5,7 @@ uint32_t getTimestamp ();		//returns a timestamp from RTC or 1 second counter
 
 //Edit these values
 #define LOG_USE_COLOR			//comment this line if colour not desired
-#define LOG_TIME				//comment this line if timestamps not desired
+#define LOG_TIME			//comment this line if timestamps not desired
 #define LOG_LEVEL	LOG_TRACE	//no log output below this level
 
 //Nothing further to configure
