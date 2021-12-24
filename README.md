@@ -14,6 +14,7 @@ void uartSendByte(uint8_t byte);
 uint32_t getTimestamp ();
 ```
 uartSendByte requires a driver for your device to put a single byte onto the uart transmit pin (see example for atmega4809)
+
 getTimestamp is required if timestamps or timeoffsets are desired.  An RTC or 1 second timer can be used.
 
 The library provides 6 function-like macros for logging:
