@@ -1,6 +1,6 @@
 
 //Functions to be completed by user
-void uartSendByte(uint8_t byte);  //function that transmits a single byte onto the serial bus
+void uartSendByte(uint8_t byte);    //function that transmits a single byte onto the serial bus
 uint32_t getTimestamp ();		//returns a timestamp from RTC or 1 second counter
 
 //Edit these values
