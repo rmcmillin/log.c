@@ -1,5 +1,5 @@
 # log.c
-A simple logging library implemented in C99
+A simple library to output colourized debug/logging output to a terminal program like putty
 
 
 ![logimage](https://user-images.githubusercontent.com/77390891/147371464-0bc2ab05-07a4-4088-baf3-1cd8e032f9ba.png)
