@@ -32,19 +32,21 @@ log_fatal(const char *fmt, ...);
 
 Each function takes a format string similar to printf followed by additional arguments:
 
-I tried to keep things small, so the only formatting available is:
-%d  unsigned 16bit integer
-%l  unsigned 32bit integer
-%i  binary
-%h  hex (wihout 0x prefix)
+I tried to keep things small by not including printf, so the only formatting available is:
+| Format  | Description |
+| ------------- | ------------- |
+| %d  | unsigned 16bit integer  |
+| %l  | unsigned 32bit integer  |
+| %i |binary|
+| %h |hex (wihout 0x prefix)|
 
 ```c
-	log_trace("Register Contents %i", registerContents);
-	log_debug("Value: 0x%h", memoryContents);
-	log_info("i2c read device: %h address: %h contents: %d", slaveAddress, memoryAddress, memoryContents);
-	log_warn("i2c bus is stuck");
-	log_error("Failed with error code (%d)", errorCode);
-	log_fatal("No response");	
+log_trace("Register Contents %i", registerContents);
+log_debug("Value: 0x%h", memoryContents);
+log_info("i2c read device: %h address: %h contents: %d", slaveAddress, memoryAddress, memoryContents);
+log_warn("i2c bus is stuck");
+log_error("Failed with error code (%d)", errorCode);
+log_fatal("No response");	
 ```
 
 #### Set Log Level
